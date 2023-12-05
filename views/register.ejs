@@ -1,0 +1,55 @@
+<html lang="en">
+    <%- include('./partials/styles.ejs') %>
+    <%- include('./partials/head.ejs') %>
+    <body>
+    <h1>Register</h1>
+
+    <ul>
+        <% if (typeof errors != 'undefined') { %> 
+            <% errors.forEach(error => { %>
+        <li><%= error.message %></li>
+        <% }) %> 
+        <% } %>
+      </ul>
+  
+
+    <form action="/register" method="POST">
+      <div>
+        <input type="text" id="username" name="username" placeholder="username" required />
+      </div>
+      <div>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          placeholder="Email"
+          required
+        />
+      </div>
+      <div>
+        <input
+          type="password"
+          id="password"
+          name="password"
+          placeholder="Password"
+          required
+        />
+      </div>
+      <div>
+        <input
+          type="password"
+          id="password2"
+          name="password2"
+          placeholder="Confirm Password"
+          required
+        />
+      </div>
+      <div>
+        <input type="submit" value="Register" />
+      </div>
+
+      <a href="/login">Already registered? Login here</a>
+    </form>
+  </body>
+  <%- include('./partials/foot.ejs') %>
+  </html>

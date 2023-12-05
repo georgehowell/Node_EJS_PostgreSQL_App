@@ -1,73 +1,17 @@
-const express = require('express');
-const methodOverride = require('method-override');
-const app = express();
-const PORT = 3000;
-require('dotenv').config();
+// const express = require("express");
 
+// const { pool } = require("./dbConfig");
+const {Client} = require('pg')
 
-// User Login / User Register:
 const bcrypt = require("bcrypt");
 const passport = require("passport");
 const flash = require("express-flash");
 const session = require("express-session");
-const {Client} = require('pg')
+// require("dotenv").config();
+// const app = express();
 
+// const PORT = process.env.PORT || 3000;
 
-// Serve static files from the 'public' directory
-app.use(express.static('public'));
-
-global.DEBUG = true;
-app.set('view engine', 'ejs');
-app.use(express.static('public'));
-app.use(express.urlencoded({ extended: false, }));
-app.use(methodOverride('_method'));
-
-app.get('/', (req, res) => {
-    res.render('index.ejs');
-});
-
-app.get('/about', (request, response) => {
-    response.render('about.ejs');
-});
-
-
-
-// routes
-const postsRouter = require('./routes/posts')
-app.use('/posts', postsRouter);
-
-const commentsRouter = require('./routes/comments')
-app.use('/comments', commentsRouter);
-
-const usersRouter = require('./routes/users')
-app.use('/users', usersRouter);
-
-// api routes
-const apiusersRouter = require('./routes/api/users');
-app.use('/api', apiusersRouter);
-
-const apicommentsRouter = require('./routes/api/comments');
-app.use('/api', apicommentsRouter);
-
-const apipostsRouter = require('./routes/api/posts');
-app.use('/api', apipostsRouter);
-
-
-// Login / Register routes
-const loginRouter = require('./routes/login');
-app.use('/api', loginRouter);
-
-const registerRouter = require('./routes/register');
-app.use('/api', registerRouter);
-
-
-
-
-
-
-/* * * * * * * * * * * * * * * * * * * * */
-/*     User Login / User Registration    */
-/* * * * * * * * * * * * * * * * * * * * */
 const initializePassport = require("./passportConfig");
 
 initializePassport(passport);
@@ -102,42 +46,43 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
 
+app.get("/", (req, res) => {
+  res.render("index");
+});
 
-
-
+app.get("/register", checkAuthenticated, (req, res) => {
+  res.render("register.ejs");
+});
 
 app.get("/login", checkAuthenticated, (req, res) => {
   // flash sets a messages variable. passport sets the error message
-  // console.log(req.session.flash.error);
+  console.log(req.session.flash.error);
   res.render("login.ejs");
 });
 
 app.get("/dashboard", checkNotAuthenticated, (req, res) => {
   console.log(req.isAuthenticated());
-  res.render("dashboard", { user: req.user.username });
+  res.render("dashboard", { user: req.user.name });
 });
 
-app.post("/logout", (req, res, next) => {
-  req.logout((err) => {
-    if (err) { return next(err); }
-    res.redirect('/')
-  });
-  // res.render("index", { message: "You have logged out successfully" });
+app.get("/logout", (req, res) => {
+  req.logout();
+  res.render("index", { message: "You have logged out successfully" });
 });
 
 app.post("/register", async (req, res) => {
-  let { username, email, password, password2 } = req.body;
+  let { name, email, password, password2 } = req.body;
 
   let errors = [];
 
   console.log({
-    username,
+    name,
     email,
     password,
     password2
   });
 
-  if (!username || !email || !password || !password2) {
+  if (!name || !email || !password || !password2) {
     errors.push({ message: "Please enter all fields" });
   }
 
@@ -150,7 +95,7 @@ app.post("/register", async (req, res) => {
   }
 
   if (errors.length > 0) {
-    res.render("register", { errors, username, email, password, password2 });
+    res.render("register", { errors, name, email, password, password2 });
   } else {
     hashedPassword = await bcrypt.hash(password, 10);
     console.log(hashedPassword);
@@ -161,21 +106,20 @@ app.post("/register", async (req, res) => {
       [email],
       (err, results) => {
         if (err) {
-          throw err;
+          console.log(err);
         }
-        console.log(err);
-
         console.log(results.rows);
 
         if (results.rows.length > 0) {
-          errors.push({ message: "email already registered" })
-          return res.render("register", { errors });
+          return res.render("register", {
+            message: "Email already registered"
+          });
         } else {
           client.query(
-            `INSERT INTO users (username, email, password)
+            `INSERT INTO users (name, email, password)
                 VALUES ($1, $2, $3)
-                RETURNING userid, password`,
-            [username, email, hashedPassword],
+                RETURNING id, password`,
+            [name, email, hashedPassword],
             (err, results) => {
               if (err) {
                 throw err;
@@ -214,17 +158,6 @@ function checkNotAuthenticated(req, res, next) {
   res.redirect("/login");
 }
 
-// app.listen(PORT, () => {
-//   console.log(`Server running on port ${PORT}`);
-// });
-
-
-// 404 page
-app.use((req, res) => {
-    res.status(404).render('404');
-});
-
-// Start the server
 app.listen(PORT, () => {
-    console.log(`Simple app running on port ${PORT}.`)
+  console.log(`Server running on port ${PORT}`);
 });

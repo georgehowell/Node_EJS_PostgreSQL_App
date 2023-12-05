@@ -2,9 +2,14 @@
     <%- include('./partials/styles.ejs') %>
     <%- include('./partials/head.ejs') %>
     <body>
-        <%- include('./partials/nav.ejs') %>
-        <h1>Home Page</h1>
-        <h2>Welcome to the home page of my Node.js application.</h2>
+
+        <h1>Home</h1>
+
+        <% if (typeof message !== 'undefined' ) { %>
+            <p><%= message %></p>
+            <% } %>
+        
+            <a href="/login">Login</a>
     </body>
     <%- include('./partials/foot.ejs') %>
 </html>
