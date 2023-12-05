@@ -1,0 +1,32 @@
+<!-- views/users/index.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('./partials/styles.ejs') %>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FullStack JavaScript QAP3</title>
+</head>
+<body>
+    <div class="userPage">
+    <%- include('./partials/nav.ejs') %>
+    <h1>Users</h1>
+    <ul>
+        <% if (users && users.length > 0) { %>
+            <% users.forEach(user => { %>
+                <li>
+                    <%= user.username %> - <%= user.email %> - <%= user.userid %>
+                    <a class="userEditBtn" href="/users/<%= user.userid %>/edit">Edit User <%= user.userid %></a>
+                    <a class="userDeleteBtn" href="/users/<%= user.userid %>/delete">Delete User <%= user.userid %></a>
+                </li>
+                <br>
+            <% }); %>
+        </ul>
+    <% } else { %>
+        <p>No users available.</p>
+    <% } %>
+    <a class="addNew" href="/users/new">Add New User</a>
+    <%- include('./partials/foot.ejs') %>
+</div>
+</body>
+</html>

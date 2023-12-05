@@ -1,0 +1,32 @@
+<!-- posts.ejs -->
+
+<html lang="en">
+    <%- include('./partials/styles.ejs') %>
+    <%- include('./partials/head.ejs') %>
+    <body>
+        <%- include('./partials/nav.ejs') %>
+        <div class="posts content">
+            <h1>Posts</h1>
+            
+            <!-- Display all posts -->
+            <% if (posts && posts.length > 0) { %>
+                <ul>
+                    <% posts.forEach(post => { %>
+                        <li>
+                            <h3><%= post.title %></h3>
+                            <p><%= post.content %></p>
+                            <p>Created at: <%= post.created_at %></p>
+                            <a href="/posts/<%= post.postid %>/edit">Edit</a>
+                            <a href="/posts/<%= post.postid %>/delete">Delete</a>
+                        </li>
+                    <% }) %>
+                </ul>
+            <% } else { %>
+                <p>No posts available.</p>
+            <% } %>
+            
+            <a class="addNew" href="/posts/new">Create a New Post</a>
+        </div>
+    </body>
+    <%- include('./partials/foot.ejs') %>
+</html>

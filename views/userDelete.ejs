@@ -1,0 +1,29 @@
+<!-- userDelete.ejs -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('./partials/styles.ejs') %>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delete User</title>
+</head>
+<body>
+<%- include('./partials/nav.ejs') %>
+    <h1>Delete User</h1>
+
+    <!-- Display user information -->
+    <p>Are you sure you want to delete the following user?</p>
+    <p>ID: <%= user.userid %></p>
+    <p>Username: <%= user.username %></p>
+    <p>Email: <%= user.email %></p>
+
+    <!-- Form for deleting the user -->
+    <form action="/users/<%= user.userid %>?_method=DELETE" method="POST">
+        <!-- <input type="hidden" name="_method" value="DELETE"> -->
+        <button type="submit">Delete User</button>
+    </form>
+
+<%- include('./partials/foot.ejs') %>
+</body>
+</html>

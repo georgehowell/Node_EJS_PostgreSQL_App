@@ -1,0 +1,21 @@
+<!-- views/deleteComment.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('./partials/styles.ejs') %>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delete Comment</title>
+</head>
+<body>
+    <% include('./partials/nav.ejs') %>
+    <h1>Delete Comment</h1>
+    <p>Are you sure you want to delete this comment?</p>
+    <p>Content: <%= comment.content %></p>
+    <form action="/comments/<%= comment.commentid %>?_method=DELETE" method="POST">
+        <!-- <input type="hidden" name="_method" value="DELETE"> -->
+        <button type="submit">Delete Comment</button>
+    </form>
+    <% include('./partials/foot.ejs') %>
+</body>
+</html>

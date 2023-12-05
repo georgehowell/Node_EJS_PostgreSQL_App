@@ -1,0 +1,8 @@
+insert into comments (commentid, userid, postid, content, created_at) values (1, 1, 1, 'Etiam vel augue. Vestibulum rutrum rutrum neque. Aenean auctor gravida sem.', '12/1/2023');
+insert into comments (commentid, userid, postid, content, created_at) values (2, 2, 2, 'Sed sagittis. Nam congue, risus semper porta volutpat, quam pede lobortis ligula, sit amet eleifend pede libero quis orci. Nullam molestie nibh in lectus.', '12/1/2023');
+insert into comments (commentid, userid, postid, content, created_at) values (3, 3, 3, 'Fusce consequat. Nulla nisl. Nunc nisl.', '12/1/2023');
+insert into comments (commentid, userid, postid, content, created_at) values (4, 4, 4, 'Quisque porta volutpat erat. Quisque erat eros, viverra eget, congue eget, semper rutrum, nulla. Nunc purus.', '12/1/2023');
+insert into comments (commentid, userid, postid, content, created_at) values (5, 5, 5, 'Aliquam quis turpis eget elit sodales scelerisque. Mauris sit amet eros. Suspendisse accumsan tortor quis turpis.', '12/1/2023');
+insert into comments (commentid, userid, postid, content, created_at) values (6, 6, 6, 'Praesent blandit. Nam nulla. Integer pede justo, lacinia eget, tincidunt eget, tempus vel, pede.', '12/1/2023');
+insert into comments (commentid, userid, postid, content, created_at) values (7, 7, 7, 'Proin eu mi. Nulla ac enim. In tempor, turpis nec euismod scelerisque, quam turpis adipiscing lorem, vitae mattis nibh ligula nec sem.', '12/1/2023');
+insert into comments (commentid, userid, postid, content, created_at) values (8, 8, 8, 'In hac habitasse platea dictumst. Etiam faucibus cursus urna. Ut tellus.', '12/1/2023');

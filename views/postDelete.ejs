@@ -1,0 +1,23 @@
+<!-- views/postDelete.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('./partials/styles.ejs') %>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delete Post</title>
+</head>
+<body>
+    <%- include('./partials/nav.ejs') %>
+    <h1>Delete Post</h1>
+    <p>Are you sure you want to delete the following post?</p>
+    <p>ID: <%= post.postid %></p>
+    <p>Title: <%= post.title %></p>
+    <p>Content: <%= post.content %></p>
+    <form action="/posts/<%= post.postid %>?_method=DELETE" method="POST">
+        <!-- <input type="hidden" name="_method" value="DELETE"> -->
+        <button type="submit">Delete Post</button>
+    </form>
+    <%- include('./partials/foot.ejs') %>
+</body>
+</html>

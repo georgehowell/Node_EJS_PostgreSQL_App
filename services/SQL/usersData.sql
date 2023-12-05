@@ -1,0 +1,10 @@
+insert into users (userid, username, email, password) values (1, 'jcamelin0', 'aaleshintsev0@digg.com', 'mK4`.v/gw$');
+insert into users (userid, username, email, password) values (2, 'ajoynson1', 'mblewitt1@buzzfeed.com', 'oX4<Irj/SV');
+insert into users (userid, username, email, password) values (3, 'jchaise2', 'cmcinnerny2@marketwatch.com', 'fC9*`\3z.');
+insert into users (userid, username, email, password) values (4, 'rghio3', 'umoukes3@nhs.uk', 'aZ4$~01PYp{WsA');
+insert into users (userid, username, email, password) values (5, 'alea4', 'dgarrat4@mozilla.com', 'sI9%i(''McSHtmTD');
+insert into users (userid, username, email, password) values (6, 'acrang5', 'adonisi5@addtoany.com', 'xN4*w?"LiSm@MEJ');
+insert into users (userid, username, email, password) values (7, 'rkirkwood6', 'dredborn6@shutterfly.com', 'dV2|mF1>G>FjKQ');
+insert into users (userid, username, email, password) values (8, 'rbaumadier7', 'jlowdes7@google.co.jp', 'gH2`{7!it43yo{7');
+insert into users (userid, username, email, password) values (9, 'pbalducci8', 'bstoney8@example.com', 'cG4=PutlB');
+insert into users (userid, username, email, password) values (10, 'sbetonia9', 'abeekmann9@edublogs.org', 'nK9_zV=?iO');

@@ -1,0 +1,29 @@
+<!-- views/comments.ejs -->
+<html lang="en">
+    <%- include('./partials/styles.ejs') %>
+    <%- include('./partials/head.ejs') %>
+    <body>
+        <%- include('./partials/nav.ejs') %>
+        <div class="comments content">
+            <h1>Comments</h1>
+            
+            <!-- Display all comments -->
+            <% if (comments && comments.length > 0) { %>
+                <ul>
+                    <% comments.forEach(comment => { %>
+                        <li>
+                            <p><%= comment.content %></p>
+                            <a href="/comments/<%= comment.commentid %>/edit">Edit</a>
+                            <a href="/comments/<%= comment.commentid %>/delete">Delete</a>
+                        </li>
+                    <% }) %>
+                </ul>
+            <% } else { %>
+                <p>No comments available.</p>
+            <% } %>
+            
+            <a class="addNew" href="/comments/new">Create a New Comment</a>
+        </div>
+    </body>
+    <%- include('./partials/foot.ejs') %>
+</html>

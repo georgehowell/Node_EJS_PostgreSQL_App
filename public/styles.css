@@ -1,0 +1,146 @@
+body {
+    background-color: #ffffff;
+    font-family: "Roboto", sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #212529;
+    text-align: left;
+    margin: 20;
+    margin-top: 20px;
+    padding: 5;
+}
+
+nav a:hover {
+    background-color: transparent;
+    color: #0056b3;
+}
+
+li a {
+    color: #007bff;
+    text-decoration: none;
+    background-color: transparent;
+    text-decoration: none;
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    margin: 0.5rem;
+    border: 2px solid #333;
+    border-radius: 4px;
+    color: #333;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+a:hover {
+    color: white;
+    text-decoration: underline;
+    background-color: #0056b3;
+}
+
+.addNew {
+    background-color: black;
+    text-decoration: none;
+    /* background-color: transparent; */
+    text-decoration: none;
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    margin: 0.5rem;
+    border: 2px solid #333;
+    border-radius: 4px;
+    color: #ffffff;
+    transition: background-color 0.3s, color 0.3s;
+    cursor: pointer;
+}
+
+.addNew:hover {
+    color: white;
+    text-decoration: underline;
+    background-color: #007bff;
+    cursor: pointer;
+}
+
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 1rem;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+nav a {
+    font-size: 20px;
+    color: #007bff;
+    text-decoration: none;
+    background-color: transparent;
+    text-decoration: none;
+}
+
+.navHR {
+    border: 1px solid #000000;
+    margin-top: 20px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    margin-bottom: 0.5rem;
+}
+
+input,
+textarea {
+    padding: 0.5rem;
+    margin-bottom: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+button {
+    padding: 0.5rem 1rem;
+    border: 1px solid black;
+    border-radius: 4px;
+    background-color: #007bff;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+footer {
+    color: #000000;
+    padding: 1rem;
+    text-align: center;
+    bottom: 20px;
+    left: 43%;
+    position: fixed;
+    margin-left: -10px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.userPage {
+    margin-top: 25px;
+    margin-left: 17px;
+}
+
+.userEditBtn {
+    position: absolute;
+    right: 200px;
+    width: 120px;
+    text-align: center;
+}
+
+.userDeleteBtn {
+    position: absolute;
+    right: 20px;
+    width: 140px;
+    text-align: center;
+}
