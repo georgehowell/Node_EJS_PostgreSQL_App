@@ -55,10 +55,13 @@ app.use('/api', apipostsRouter);
 
 // Login / Register routes
 const loginRouter = require('./routes/login');
-app.use('/api', loginRouter);
+app.use('/login', loginRouter);
 
 const registerRouter = require('./routes/register');
-app.use('/api', registerRouter);
+app.use('/register', registerRouter);
+
+const dashboardRouter = require('./routes/dashboard');
+app.use('/users/dashboard', dashboardRouter);
 
 
 
@@ -112,12 +115,13 @@ app.get("/login", checkAuthenticated, (req, res) => {
   res.render("login.ejs");
 });
 
-app.get("/dashboard", checkNotAuthenticated, (req, res) => {
+app.get("/users/dashboard", checkNotAuthenticated, (req, res) => {
   console.log(req.isAuthenticated());
-  res.render("dashboard", { user: req.user.username });
+  // res.render("dashboard", { user: req.user.username });
+  res.render("dashboard", { username: req.username });
 });
 
-app.post("/logout", (req, res, next) => {
+app.post("/users/logout", (req, res, next) => {
   req.logout((err) => {
     if (err) { return next(err); }
     res.redirect('/')
@@ -150,7 +154,7 @@ app.post("/register", async (req, res) => {
   }
 
   if (errors.length > 0) {
-    res.render("register", { errors, username, email, password, password2 });
+    res.render("register.ejs", { errors, username, email, password, password2 });
   } else {
     hashedPassword = await bcrypt.hash(password, 10);
     console.log(hashedPassword);
@@ -169,7 +173,7 @@ app.post("/register", async (req, res) => {
 
         if (results.rows.length > 0) {
           errors.push({ message: "email already registered" })
-          return res.render("register", { errors });
+          return res.render("register.ejs", { errors });
         } else {
           client.query(
             `INSERT INTO users (username, email, password)

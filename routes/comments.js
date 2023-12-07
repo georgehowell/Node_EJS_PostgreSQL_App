@@ -54,7 +54,7 @@ router.post("/", async (req, res) => {
 });
 
 // Display the form for updating a comment
-router.get("/:id/edit", async (req, res) => {
+"/:id/edit", async (req, res) => {
     const { id } = req.params;
     try {
         if (!id) {
